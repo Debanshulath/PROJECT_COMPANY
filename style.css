@@ -57,6 +57,8 @@ body {
 }
 
 /* ── HEADER & NAVIGATION (Pure CSS Hamburger) ── */
+/* ── HEADER & NAVIGATION – Fixed, Professional, Smooth Hamburger Menu ── */
+
 header {
   background: var(--color-primary);
   color: white;
@@ -64,218 +66,151 @@ header {
   top: 0;
   z-index: 1000;
   box-shadow: var(--shadow-md);
-}
-/* Nice animated hamburger icon */
-label[for="menu-toggle"] {
-  position: relative;
-  width: 30px;
-  height: 20px;
-  cursor: pointer;
+  transition: var(--transition);
 }
 
-label[for="menu-toggle"] span,
-label[for="menu-toggle"] span::before,
-label[for="menu-toggle"] span::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.35s ease;
-}
-
-label[for="menu-toggle"] span {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-label[for="menu-toggle"] span::before { top: -8px; }
-label[for="menu-toggle"] span::after  { bottom: -8px; }
-
-/* X when open */
-#menu-toggle:checked + label span {
-  background: transparent;
-}
-
-#menu-toggle:checked + label span::before {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-#menu-toggle:checked + label span::after {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-nav {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0.9rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 60px;
-}
-
+/* Logo */
 .logo {
-  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 800;
   color: var(--color-accent);
+  letter-spacing: -0.02em;
+  transition: var(--transition);
 }
 
-nav label[for="menu-toggle"] {
-  display: none;           /* hidden on desktop */
-  font-size: 1.8rem;
-  cursor: pointer;
+.logo:hover {
   color: white;
+  transform: scale(1.03);
 }
 
-/* Mobile menu toggle using checkbox hack */
+/* Hamburger Icon – Three lines → X animation */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 7px;
+  width: 34px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3.5px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile: Show hamburger */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Hamburger → X when menu open */
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(9px, 9px);
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(9px, -9px);
+}
+
+/* Hidden checkbox */
 #menu-toggle {
   display: none;
 }
 
-@media (max-width: 768px) {
-  nav label[for="menu-toggle"] {
-    display: block;
-  }
-
-  nav ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--color-primary);
-    flex-direction: column;
-    padding: 1.5rem 5%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  }
-
-  #menu-toggle:checked ~ ul {
-    display: flex;
-  }
-
-  nav ul li {
-    margin: 0.8rem 0;
-  }
-
-  nav a {
-    font-size: 1.15rem;
-    display: block;
-    padding: 0.6rem 0;
-  }
-}
-
-nav ul {
+/* Desktop menu – horizontal */
+.nav-links {
   display: flex;
   list-style: none;
-  gap: 1.6rem;
+  gap: 2.2rem;
   margin: 0;
+  padding: 0;
 }
 
-nav a {
+.nav-links a {
   color: white;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  transition: var(--transition);
+  font-size: 1.05rem;
+  padding: 0.5rem 0.3rem;
   position: relative;
+  transition: var(--transition);
 }
 
-nav a:hover,
-nav a.active {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--color-accent);
 }
 
-nav a::after {
+.nav-links a::after {
   content: '';
   position: absolute;
   width: 0;
-  height: 2px;
-  bottom: -4px;
+  height: 2.5px;
+  bottom: -6px;
   left: 0;
   background: var(--color-accent);
-  transition: width 0.3s ease;
+  transition: width 0.38s ease;
 }
 
-nav a:hover::after { width: 100%; }
-:root {
-  --color-primary: #0d1b2a;
-  --color-primary-dark: #030712;
-  --color-accent: #ff6b00;
-  --color-accent-hover: #e55f00;
-  --color-text: #e2e8f0;
-  --color-text-muted: #94a3b8;
-  --color-bg: #f8fafc;
-  --color-bg-dark: #020617;
-  --color-surface: #ffffff;
-  --color-surface-dark: #0f172a;
-  --color-border: #e2e8f0;
-  --color-border-dark: #334155;
-  --radius: 0.65rem;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-  --shadow-md: 0 8px 24px rgba(0,0,0,0.12);
-  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  --transition-fast: all 0.25s ease;
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #f1f5f9;
-    --color-text-muted: #cbd5e1;
-    --color-bg: #020617;
-    --color-surface: #0f172a;
-    --color-border: #334155;
+/* Mobile menu – Slide from right, full screen */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-primary);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.45s cubic-bezier(0.77,0,0.18,1);
+    z-index: 999;
+    padding: 5rem 2rem;
+    overflow-y: auto;
   }
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.65;
-  color: var(--color-text);
-  background: var(--color-bg);
-  font-size: 16px;
-}
-
-/* Fade-in on load / scroll reveal */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  /* Menu open */
+  #menu-toggle:checked ~ .nav-links {
+    right: 0;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .nav-links li {
+    margin: 1.5rem 0;
+    width: 90%;
+    text-align: center;
   }
-}
 
-.animate-fade-in {
-  opacity: 0;
-  animation: fadeInUp 0.9s forwards cubic-bezier(0.22, 1, 0.36, 1);
-}
+  .nav-links a {
+    font-size: 1.7rem;
+    padding: 1rem 2rem;
+    display: block;
+    border-radius: var(--radius);
+    transition: background 0.35s ease;
+  }
 
-.animate-fade-in.delay-1 { animation-delay: 0.2s; }
-.animate-fade-in.delay-2 { animation-delay: 0.4s; }
-.animate-fade-in.delay-3 { animation-delay: 0.6s; }
+  .nav-links a:hover {
+    background: rgba(249, 115, 22, 0.15);
+  }
 
-/* Header & Navigation */
-header {
-  background: var(--color-primary);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: var(--shadow-md);
-  transition: var(--transition);
+  /* Optional: Dim page when menu open */
+  body:has(#menu-toggle:checked) {
+    overflow: hidden;
+  }
 }
 
 nav {
