@@ -130,7 +130,7 @@ header {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 2.2rem;
+  gap: 1.1rem;
   margin: 0;
   padding: 0;
 }
