@@ -30,8 +30,8 @@
 }
 
 * {
-  margin: 5;
-  padding: 0;
+  margin: 4px;
+  padding: 3px;
   box-sizing: border-box;
 }
 
@@ -345,7 +345,7 @@ nav a:hover {
 
 /* Sections */
 section {
-  padding: 6.5rem 5%;
+  padding: 1rem 1%;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -472,19 +472,19 @@ footer {
   background: var(--color-primary-dark);
   color: var(--color-text-muted);
   text-align: center;
-  padding: 3.5rem 5% 2rem;
+  padding: 1rem 1% 1rem;
   font-size: 0.97rem;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .hero { padding: 7rem 5% 5rem; }
+  .hero { padding: 1rem 1% 2rem; }
 }
 
 @media (max-width: 768px) {
   nav { flex-direction: column; gap: 1.1rem; padding: 1.2rem 5%; }
   nav ul { gap: 1.1rem; flex-wrap: wrap; justify-content: center; }
-  section { padding: 4.5rem 5%; }
+  section { padding: 1.5rem 3%; }
 }
 
 /* Scroll reveal helper (add .visible via JS or IntersectionObserver) */
